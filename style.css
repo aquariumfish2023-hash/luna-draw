@@ -1,0 +1,181 @@
+* { box-sizing: border-box; }
+
+:root {
+  color-scheme: dark;
+  --panel: rgba(15, 15, 15, .92);
+  --accent: #ffffff;
+}
+
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+  font-family: Arial, sans-serif;
+}
+
+body { touch-action: none; }
+
+#app {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: #000;
+}
+
+#camera {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #111;
+}
+
+#cameraFallback {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 12px;
+  text-align: center;
+  background: #111;
+  color: #fff;
+  padding: 24px;
+}
+
+#cameraFallback.visible { display: flex; }
+
+.fallback-icon { font-size: 48px; }
+
+button, .file-btn {
+  border: 0;
+  border-radius: 14px;
+  padding: 12px 15px;
+  background: rgba(255,255,255,.14);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:active, .file-btn:active { transform: scale(.97); }
+
+#startCameraBtn { background: #fff; color: #111; }
+
+.topbar {
+  position: absolute;
+  z-index: 10;
+  top: env(safe-area-inset-top, 0px);
+  left: 0;
+  right: 0;
+  padding: 14px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to bottom, rgba(0,0,0,.72), transparent);
+}
+
+h1 { margin: 0; font-size: 20px; }
+#status { font-size: 12px; opacity: .72; }
+
+.round-btn {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  padding: 0;
+  background: rgba(0,0,0,.5);
+  border: 1px solid rgba(255,255,255,.2);
+}
+
+#overlayArea {
+  position: absolute;
+  z-index: 5;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+#referenceImage {
+  position: absolute;
+  display: none;
+  left: 50%;
+  top: 50%;
+  max-width: none;
+  width: min(80vw, 520px);
+  transform: translate(-50%, -50%) scale(1);
+  transform-origin: center center;
+  opacity: .55;
+  filter: none;
+  pointer-events: auto;
+  user-select: none;
+  -webkit-user-drag: none;
+  touch-action: none;
+}
+
+.controls {
+  position: absolute;
+  z-index: 20;
+  left: 10px;
+  right: 10px;
+  bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+  padding: 12px;
+  border-radius: 20px;
+  background: var(--panel);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 30px rgba(0,0,0,.35);
+}
+
+.file-btn {
+  display: block;
+  text-align: center;
+  margin-bottom: 10px;
+  background: #fff;
+  color: #111;
+}
+
+.file-btn input { display: none; }
+
+.control {
+  display: grid;
+  grid-template-columns: 95px 1fr;
+  align-items: center;
+  gap: 8px;
+  margin: 7px 0;
+  font-size: 12px;
+}
+
+input[type="range"] { width: 100%; accent-color: #fff; }
+
+.button-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 7px;
+  margin-top: 8px;
+}
+
+.button-row button { padding: 10px 6px; }
+
+#hint {
+  position: absolute;
+  z-index: 9;
+  left: 18px;
+  right: 18px;
+  bottom: 225px;
+  text-align: center;
+  color: #fff;
+  font-size: 12px;
+  opacity: .75;
+  pointer-events: none;
+  text-shadow: 0 1px 3px #000;
+}
+
+@media (min-width: 700px) {
+  .controls { left: auto; width: 360px; right: 18px; bottom: 18px; }
+  #hint { bottom: 30px; left: 18px; right: 390px; }
+}

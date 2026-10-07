@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <meta name="theme-color" content="#111111">
+  <meta name="description" content="Luna Draw - herramienta gratuita para dibujar con cámara y realidad aumentada.">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon-192.png">
+  <link rel="stylesheet" href="style.css">
+  <title>Luna Draw</title>
+</head>
+<body>
+  <main id="app">
+    <video id="camera" autoplay playsinline muted></video>
+    <div id="cameraFallback">
+      <div class="fallback-icon">📷</div>
+      <p>Activa la cámara para comenzar</p>
+      <button id="startCameraBtn">Activar cámara</button>
+    </div>
+
+    <div id="overlayArea">
+      <img id="referenceImage" alt="Imagen de referencia">
+    </div>
+
+    <header class="topbar">
+      <div>
+        <h1>Luna Draw</h1>
+        <span id="status">Lista para dibujar</span>
+      </div>
+      <button class="round-btn" id="cameraBtn" aria-label="Activar cámara">📷</button>
+    </header>
+
+    <section class="controls" aria-label="Controles">
+      <label class="file-btn">
+        🖼️ Imagen
+        <input id="imageInput" type="file" accept="image/*">
+      </label>
+
+      <div class="control">
+        <span>Transparencia</span>
+        <input id="opacityRange" type="range" min="0.05" max="1" step="0.05" value="0.55">
+      </div>
+
+      <div class="control">
+        <span>Zoom</span>
+        <input id="zoomRange" type="range" min="0.25" max="3" step="0.05" value="1">
+      </div>
+
+      <div class="button-row">
+        <button id="resetBtn">↺ Restablecer</button>
+        <button id="flipBtn">↔ Voltear</button>
+        <button id="flashBtn">🔦 Luz</button>
+      </div>
+    </section>
+
+    <div id="hint">Carga una imagen y arrástrala con un dedo. Pellizca para hacer zoom.</div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
